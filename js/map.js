@@ -10,7 +10,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(myMap);
 
 // Paths to the local JSON files
-let shootingDataPath = 'Resources/NYC Shooting Incidents - Clean';
+let shootingDataPath = 'Resources/NYC Shooting Incidents - JSON.json';
 let geojsonPath = 'Resources/nyc_boros_clean.geojson';
 
 // Load the data with d3
@@ -91,31 +91,69 @@ d3.json(shootingDataPath).then(function(data) {
                 fillOpacity: 0.7
             };
         }
-        // Create the GeoJSON layer with the style and add it to the map
-        L.geoJson(geojsonData, {style: style}).addTo(choroplethMap);
+        // ************************************/
+        // Add interaction to the CHoropleth Map
+        //************************************/
 
+
+        //Define an event listener for layer mouseover event and bring it to the front
+        function highlightFeature(e) {
+            var layer = e.target;
+        
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+        
+            layer.bringToFront();
+        }
+
+        //Define action on mouseout. Reset layer style to default state
+        function resetHighlight(e) {
+            geojson.resetStyle(e.target);
+        }
+
+        //Define a click listener that zooms to the selected borough
+        function zoomToFeature(e) {
+            choroplethMap.fitBounds(e.target.getBounds());
+        }
+
+        //Define a function to run on each feature
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+        }
+
+        // Create the GeoJSON layer with the style and add it to the map
+        geojson = L.geoJson(geojsonData, {
+            style: style,
+            onEachFeature: onEachFeature
+        }).addTo(choroplethMap);
 
         // Add legend to the map
         let legend = L.control({position: 'bottomright'});
 
         legend.onAdd = function (map) {
-        let div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 100, 200, 500, 1000, 2000, 5000, 10000],
-            labels = [];
+            let div = L.DomUtil.create('div', 'info legend'),
+                grades = [0, 100, 200, 500, 1000, 2000, 5000, 10000],
+                labels = [];
 
-        // loop through our density intervals and generate a label with a colored square for each interval
-        for (let i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-        }
-        return div;
+                // loop through our density intervals and generate a label with a colored square for each interval
+                for (let i = 0; i < grades.length; i++) {
+                    div.innerHTML +=
+                        '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                    }
+                    return div;
 
     
-    };
-
-    // Add legend to the ChoroplethMap
-    legend.addTo(choroplethMap);
-
-    })
+        };
+        // Add legend to the ChoroplethMap
+        legend.addTo(choroplethMap);
+    });
 });
