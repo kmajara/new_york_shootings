@@ -94,8 +94,7 @@ d3.json(shootingDataPath).then(function(data) {
         // ************************************/
         // Add interaction to the CHoropleth Map
         //************************************/
-
-
+        
         //Define an event listener for layer mouseover event and bring it to the front
         function highlightFeature(e) {
             var layer = e.target;
