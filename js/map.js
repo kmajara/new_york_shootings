@@ -27,7 +27,7 @@ d3.json(shootingDataPath).then(function(data) {
         let location = feature.geometry.coordinates;
         let boro = feature.properties.BORO;
 
-        // Initialize boro count if not already done
+        // Initialize boro count and increment counts
         if (!boroughCounts[boro]) {
             boroughCounts[boro] = 0;
         }
@@ -55,7 +55,9 @@ d3.json(shootingDataPath).then(function(data) {
     // Add our marker cluster layer to the map
     myMap.addLayer(markers);
 
+    /**********************************/
     // Create the Choropleth map 
+    // *******************************/
     let choroplethMap = L.map("choroplethMap", {
         center: [40.7, -73.95], 
         zoom: 11
@@ -101,17 +103,28 @@ d3.json(shootingDataPath).then(function(data) {
         
             layer.setStyle({
                 weight: 5,
-                color: '#666',
+                color: '#667',
                 dashArray: '',
                 fillOpacity: 0.7
             });
+          
+         //Get borough name and count
+         let boroughName = layer.feature.properties.name;
+         let choroCount = boroughCounts[boroughName] || 0;
         
-            layer.bringToFront();
+         // Create pop-up content
+         let popupContent = `<b><h5>${boroughName}</h5><br><h5>Incidents: ${choroCount}</h5></b>`;
+
+         //bind pop up layer and bring layer to front
+         layer.bindPopup(popupContent).openPopup(); 
+         layer.bringToFront();
         }
 
         //Define action on mouseout. Reset layer style to default state
         function resetHighlight(e) {
             geojson.resetStyle(e.target);
+            //Close the popup 
+            e.target.closePopup();
         }
 
         //Define a click listener that zooms to the selected borough

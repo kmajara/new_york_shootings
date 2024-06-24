@@ -25,6 +25,22 @@
     <!-- Marker cluster CSS -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+    <style>
+        #map, #choroplethMap {
+            height: 600px;
+        }
+        .filter-container {
+            margin: 20px;
+        }
+        .info {
+            padding: 6px 8px;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+    </style>
+
 </head>
 <body>
   <!-- Navigation bar -->
@@ -54,11 +70,20 @@
     <!-- div that holds the map -->
     <div class="container">
         <h2 class="my-4">Interactive Map</h2>
-        <p>The below map provides information on shooting incidents in New York. The interactive map allows you to see the locations of the incidents and basic information about both perpetrators and victims.
-
+        <p>The below map provides information on shooting incidents in New York City's five boroughs. The interactive map allows you to see the locations of the incidents and basic information about both perpetrators and victims.
+            <br> 
+           Individual event markers have popups detailing incident id, location, and perpetrators' and victims' details 
+           <br>
+           The clustering of different markers in the same vicinity is color-coded and the color changes with zoom 
+           <br> 
+           Based on the high level view of the map, Staten island has the least number of incidents (approx. 776), while Brooklyn and the Bronx have the highest incidents. 
         </p>
+
+        <!-- Clustering Map -->
         <div id="map" style="height: 600px"></div>
         <h2 class="my-4">Choropleth Map</h2>
+
+        <!-- Choropleth Map -->
         <p>The below map shows the total number of shooting incidents by borough in New York City. Each borough is colored based on the number of incidents.</p>
         <div id="choroplethMap" style="height: 600px"></div>
     </div>
