@@ -10,18 +10,17 @@
     <link rel="stylesheet" href="css/styles.css">
 
    <style> 
-   /* style for the full screen image */
-    .full-screen-bg {
+        .full-screen-bg {
         background: url('images/home.jpg') no-repeat center center/cover;
         height: 100vh; 
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        color: white;
-    }
-    /* add overlay to make text more legible */
-    .overlay {
+        color: white;   
+        }
+        /* add overlay to make text more legible in home.html */
+        .overlay {
             position: absolute;
             top: 10;
             left: 0;
@@ -29,16 +28,15 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.5); /* Optional: Adds a dark overlay to make text more readable */
             z-index: 1;
-    }        
+        }   
     </style>
-
-
 </head>
 <br>
 <body>
     <!--- BUTTONS -->
     <div class="container"> 
         <button type="button" class="btn btn-secondary"><a class = "map-button" href="home.html" style="color: white" > Home </a></button>
+        <button type="button" class="btn btn-danger"><a class = "map-button" href="about.html" style="color: white" > About </a></button>
         <button type="button" class="btn btn-primary"><a class = "map-button" href="datasource.html" style="color: white" >Data Processing </a></button>
         <button type="button" class="btn btn-success"><a class = "map-button" href="dataAnalysis.html" style="color: white" >Data Analysis</a></button>
         <button type="button" class="btn btn-warning"><a class = "map-button" href="highchart.html" style="color: white" >Interactive Graphs</a></button>
@@ -47,11 +45,15 @@
     <br>
 
    <!-- Full Screen Background Image -->
-   <div class="full-screen-bg">
+    <div class="full-screen-bg">
     <div class="overlay"></div>
+    <style> 
+        .bg-dark {
+            margin-top: -45vh;
+    }  </style>
     <div class="bg-dark bg-opacity-50 p-2">
-        <h1>NYC Shooting Incident Project</h1>
-        <p >A data perspective</p>
+        <h1>NYC Shooting Incidents Project</h1>
+        <h3>A data perspective</h3>
     </div>
     </div>
 
