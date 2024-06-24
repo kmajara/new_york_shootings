@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Source</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Add our CSS style file link -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="datasource.html">Data Source </a> 
+            <li class="nav-item">
+                <a class="nav-link" href="stats.html">Statistical Analysis</a> <!-- UPDATE THE PAGE LINK -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="graphs.html">Graphs</a> <!-- UPDATE THE PAGE LINK -->
+            <li class="nav-item">
+                <a class="nav-link" href="map.html">Interactive Maps</a>
+            </li>
+        </ul>
+    </div>
+    </nav>
+
+    <br>
+
+    <!-- div that holds the map -->
+    <div class="container">
+        <h2 class="number-text"><strong>Extract, transform, and load (ETL)</strong></h2>
+        <p>The image below illustrates our process for data cleaning. 
+        </p>
+        <img src="images/elt.png" style="height: 600px">
+        <h2 class="number-text">Data Processing Steps</h2>
+        <p style="text-align: left;">We sourced the data from the NYC Open Source website and saved it as a CSV file. The data cleaning process commenced with the importation of the CSV file as a Pandas DataFrame.</p>
+
+        <ul style="text-align: left;">
+            <li><strong>Column Removal:</strong> Removed columns due to a lack of data points,</li>
+            <li><strong>Row Elimination:</strong> Eliminated rows with NA entries in important data points (such as location),</li>
+            <li><strong>Normalization of Null Values:</strong> Normalized certain null values with 'Unknown' or 'U',</li>
+            <li><strong>Data Type Conversion:</strong> Converted data types to GeoLocation.</li>
+        </ul>
+
+        <p style="text-align: left;">Following these modifications, we transferred the cleansed DataFrame into three formats: CSV, JSON, and SQLite, to meet specific application requirements.</p>
+
+        
+    </div>
+
+
+</body>
+</html>
