@@ -19,17 +19,10 @@ The pie chart represents the distribution of occurrences by race from 2006 to 20
 
 This distribution highlights that the majority of occurrences involve individuals identified as BLACK and HISPANIC, with ASIAN and WHITE individuals accounting for a smaller portion.
 
-Pyramid3D Chart: Total Occurrences of vic_age_group for Different Boroughs Over the Years
 
-The Pyramid3D chart displays the total occurrences of different age groups across various boroughs over the years. Key findings include:
-
-	•	Queens: With 100 occurrences, Queens represents a significant portion of the total occurrences by age group.
-	•	Brooklyn: Tops the chart with 120 occurrences, indicating a higher frequency of incidents involving different age groups.
-	•	Bronx: Registers 90 occurrences, showing a relatively lower but still significant number of incidents.
-	•	Manhattan: Has the least number of occurrences among the boroughs, with 80 incidents reported.
 
 Summary
 
-The data analysis reveals that Brooklyn consistently shows the highest number of occurrences across the years, followed by Queens. Bronx and Manhattan show fluctuating trends with notable dips in certain years. The racial distribution indicates a higher proportion of occurrences involving BLACK and HISPANIC individuals. The Pyramid3D chart further emphasizes that Brooklyn and Queens are the boroughs with the highest number of occurrences across different age groups, while Manhattan has the lowest.
+The data analysis reveals that Brooklyn consistently shows the highest number of occurrences across the years, followed by Queens. Bronx and Manhattan show fluctuating trends with notable dips in certain years. The racial distribution indicates a higher proportion of occurrences involving BLACK and HISPANIC individuals. 
 
 These insights can help in understanding the distribution and trends of occurrences across different boroughs and racial groups in NYC, providing valuable information for policy-making, resource allocation, and targeted interventions.
