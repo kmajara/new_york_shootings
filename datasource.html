@@ -23,15 +23,12 @@
                 <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="datasource.html">Data Source </a> 
+            <li class="nav-item">
+                <a class="nav-link" href="dataAnalysis.html">Data Analysis</a> 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="datasource.html">Data Processing </a> 
-            <li class="nav-item">
-                <a class="nav-link" href="dataAnalysis.html">Data Analysis</a> <!-- UPDATE THE PAGE LINK -->
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="highchart.html">Graphs</a> <!-- UPDATE THE PAGE LINK -->
+                <a class="nav-link" href="highchart.html">Graphs</a> 
             <li class="nav-item">
                 <a class="nav-link" href="map.html">Interactive Maps</a>
             </li>
@@ -41,7 +38,7 @@
 
     <br>
 
-    <!-- div that holds the map -->
+    <!-- div that holds the images and texts -->
     <div class="container">
         <h2 class="number-text"><strong>Extract, transform, and load (ETL)</strong></h2>
         <p>The image below illustrates our process for data cleaning. 
@@ -54,11 +51,26 @@
             <li><strong>Column Removal:</strong> Removed columns due to a lack of data points,</li>
             <li><strong>Row Elimination:</strong> Eliminated rows with NA entries in important data points (such as location),</li>
             <li><strong>Normalization of Null Values:</strong> Normalized certain null values with 'Unknown' or 'U',</li>
-            <li><strong>Data Type Conversion:</strong> Converted data types to GeoLocation.</li>
+            <li><strong>Data Type Conversion:</strong> Converted data types to GeoLocation and SQLite.</li>
         </ul>
 
-        <p style="text-align: left;">Following these modifications, we transferred the cleansed DataFrame into three formats: CSV, JSON, and SQLite, to meet specific application requirements.</p>
 
+        <p style="text-align: left;">Following these modifications, we transferred the cleansed DataFrame into three formats: CSV, JSON, and SQLite, to meet specific application requirements.</p>
+        <p style="text-align: left;"> The below screenshot depicts conversion from a DataFrame file to GeoJSON file:</p>
+        <img src="images/converttogeojson.png" style="height: 200px">
+        <br>
+        <br>
+        <p style="text-align: left;"> The below screenshot depicts conversion from a DataFrame to SQLite file for storage and downstream usage.</p>
+        <img src="images/converttosql.png" style="height: 200px">
+        <br>
+        <br>
+        <p style="text-align: left;"> The below is an example of the result of our ETL procedure and is an exerpt of the file housing our data.</p>
+        <img src="images/sqlitedatabase.png" style="height: 300px">
+        <br>
+        <br>
+        <p style="text-align: left;"> These files were used further on in our project for addional analysis and insights.</p>
+        <br>
+        <br>  
         
     </div>
 
