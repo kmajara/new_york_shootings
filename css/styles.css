@@ -53,3 +53,10 @@ body {
     padding: 20px;
     border-radius: 10px;
 }
+
+/* For percentage button in map.html */
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+  }

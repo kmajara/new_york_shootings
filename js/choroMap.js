@@ -1,20 +1,10 @@
-// Create the map object centered on New York City
-let myMap = L.map("map", {
-    center: [40.7, -73.95],
-    zoom: 11
-});
-
-// Add the tile layer that will serve as background
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
 
 // Paths to the local JSON files
-let shootingDataPath = 'Resources/NYC Shooting Incidents - JSON.json';
-let geojsonPath = 'Resources/nyc_boros_clean.geojson';
+let shootingDataPath1 = 'Resources/NYC Shooting Incidents - JSON.json';
+let geojsonPath1 = 'Resources/nyc_boros_clean.geojson';
 
 // Load the data with d3
-d3.json(shootingDataPath).then(function(data) {
+d3.json(shootingDataPath1).then(function(data) {
     // Create a new marker cluster group
     let markers = L.markerClusterGroup();
 
@@ -24,40 +14,21 @@ d3.json(shootingDataPath).then(function(data) {
     // Loop through the data
     data.features.forEach(function(feature) {
         // Set the data location property to a variable
-        let location = feature.geometry.coordinates;
         let boro = feature.properties.BORO;
 
-        // Initialize boro count and increment counts
+        // Initialize boro count. Will be used for choropleth popup counts 
         if (!boroughCounts[boro]) {
             boroughCounts[boro] = 0;
         }
         boroughCounts[boro]++;
-
-        // Check for the location property
-        if (location) {
-            // Add a new marker to the cluster group, and bind a popup
-            markers.addLayer(L.marker([location[1], location[0]])
-                .bindPopup(`
-                    <b>Incident Key:</b> ${feature.properties.INCIDENT_KEY}<br>
-                    <b>Date:</b> ${feature.properties.OCCUR_DATE}<br>
-                    <b>Time:</b> ${feature.properties.OCCUR_TIME}<br>
-                    <b>Borough:</b> ${feature.properties.BORO}<br>
-                    <b>Perpetrator Age Group:</b> ${feature.properties.PERP_AGE_GROUP}<br>
-                    <b>Perpetrator Sex:</b> ${feature.properties.PERP_SEX}<br>
-                    <b>Perpetrator Race:</b> ${feature.properties.PERP_RACE}<br><br>
-                    <b>Victim Age Group:</b> ${feature.properties.VIC_AGE_GROUP}<br>
-                    <b>Victim Sex:</b> ${feature.properties.VIC_SEX}<br>
-                    <b>Victim Race:</b> ${feature.properties.VIC_RACE}
-                `));
-        }
     });
 
     // Add our marker cluster layer to the map
     myMap.addLayer(markers);
 
-    /**********************************/
-    // Create the Choropleth map 
-    // *******************************/
+    /***************************/
+    // Create a Choropleth map 
+    /***************************/
     let choroplethMap = L.map("choroplethMap", {
         center: [40.7, -73.95], 
         zoom: 11
@@ -69,7 +40,7 @@ d3.json(shootingDataPath).then(function(data) {
     }).addTo(choroplethMap);
 
     // Load geoJson Data for borough boundaries 
-    d3.json(geojsonPath).then(function(geojsonData) {
+    d3.json(geojsonPath1).then(function(geojsonData) {
         // Define color scale
         function getColor(d) {
             return d > 10000 ? '#800026' :
@@ -103,28 +74,25 @@ d3.json(shootingDataPath).then(function(data) {
         
             layer.setStyle({
                 weight: 5,
-                color: '#667',
+                color: '#666',
                 dashArray: '',
                 fillOpacity: 0.7
             });
-          
-         //Get borough name and count
-         let boroughName = layer.feature.properties.name;
-         let choroCount = boroughCounts[boroughName] || 0;
-        
-         // Create pop-up content
-         let popupContent = `<b><h5>${boroughName}</h5><br><h5>Incidents: ${choroCount}</h5></b>`;
+        //Get borough name and count
+        let boroughName = layer.feature.properties.name;
+        let choroCount = boroughCounts[boroughName] || 0;
+       
+        // Create pop-up content
+        let popupContent = `<b><h5>${boroughName}</h5><br><h5>Incidents: ${choroCount}</h5></b>`;
 
-         //bind pop up layer and bring layer to front
-         layer.bindPopup(popupContent).openPopup(); 
-         layer.bringToFront();
+        //bind pop up layer and bring layer to front
+        layer.bindPopup(popupContent).openPopup(); 
+            layer.bringToFront();
         }
 
         //Define action on mouseout. Reset layer style to default state
         function resetHighlight(e) {
             geojson.resetStyle(e.target);
-            //Close the popup 
-            e.target.closePopup();
         }
 
         //Define a click listener that zooms to the selected borough

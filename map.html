@@ -25,29 +25,14 @@
     <!-- Marker cluster CSS -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
-    <style>
-        #map, #choroplethMap {
-            height: 600px;
-        }
-        .filter-container {
-            margin: 20px;
-        }
-        .info {
-            padding: 6px 8px;
-            background: white;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
-    </style>
 
 </head>
 <body>
   <!-- Navigation bar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -56,7 +41,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="datasource.html">Data Source </a> <!-- UPDATE THE PAGE LINK -->
                 <li class="nav-item">
-                    <a class="nav-link" href="dataAnalysis.html">Data Analysis</a> <!-- UPDATE THE PAGE LINK -->
+                    <a class="nav-link" href="dataAnalysis.html">Data Analysis</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="highchart.html">Interactive Graphs</a> 
@@ -70,19 +55,111 @@
     <!-- div that holds the map -->
     <div class="container">
         <h2 class="my-4">Interactive Map</h2>
-        <p>The below map provides information on shooting incidents in New York City's five boroughs. The interactive map allows you to see the locations of the incidents and basic information about both perpetrators and victims.
-            <br> 
-           Individual event markers have popups detailing incident id, location, and perpetrators' and victims' details 
-           <br>
-           The clustering of different markers in the same vicinity is color-coded and the color changes with zoom 
-           <br> 
-           Based on the high level view of the map, Staten island has the least number of incidents (approx. 776), while Brooklyn and the Bronx have the highest incidents. 
-        </p>
+        <p>The below map provides information on shooting incidents in New York City's five boroughs. The interactive map allows you to see the locations of the incidents and basic information about both perpetrators and victims. </p>
 
+        <ol>
+            <li>Individual event markers have popups detailing incident id, location, and perpetrators' and victims' details </li>
+            <li> The clustering of different markers in the same vicinity is color-coded and the color changes with zoom </li>
+            <li> Based on the high level view of the map, Staten island has the least number of incidents (approx. 776), while Brooklyn and the Bronx have the highest incidents.
+            <li> The map can be filtred on various parameters to display desired combinations of information  </li>
+          </ol>  
+          
         <!-- Clustering Map -->
         <div id="map" style="height: 600px"></div>
-        <h2 class="my-4">Choropleth Map</h2>
+    </div>
 
+        <!-- Map filtering -->
+        <div class="container"> 
+            <br>
+
+            <label for="boroughFilter">Filter by: Borough: &nbsp;</label>
+            <select id="boroughFilter">
+                <option value="all">All Boroughs</option>
+                <option value="BROOKLYN">Brooklyn</option>
+                <option value="BRONX">Bronx</option>
+                <option value="MANHATTAN">Manhattan</option>
+                <option value="QUEENS">Queens</option>
+                <option value="STATEN ISLAND">Staten Island</option>
+            </select>
+
+        <label for="startDateFilter">Start Date:</label>
+        <input type="date" id="startDateFilter" min="2006-01-01" max="2022-12-31">
+
+        <label for="endDateFilter">End Date:</label>
+        <input type="date" id="endDateFilter" min="2006-01-01" max="2022-12-31">
+        <br>
+        <label for="perpRaceFilter">Perp Race:&nbsp;</label>
+        <select id="perpRaceFilter">
+            <option value="all">All Races</option>
+            <option value="AMERICAN INDIAN/ALASKAN NATIVE">Native American/Alaskan</option>
+            <option value="ASIAN / PACIFIC ISLANDER">Asian/Pacific Islander</option>
+            <option value="BLACK">Black</option>
+            <option value="BLACK HISPANIC">Black Hispanic</option>
+            <option value="WHITE">White</option>
+            <option value="WHITE HISPANIC">White Hispanic</option>
+            <option value="UNKNOWN">Unknown</option>
+        </select>
+
+        <label for="perpAgeGroupFilter">&nbsp;Perp Age Group:&nbsp;</label>
+        <select id="perpAgeGroupFilter">
+            <option value="all">All Age Groups</option>
+            <option value="&lt;18">Under 18</option>
+            <option value="18-24">18-24</option>
+            <option value="25-44">25-44</option>
+            <option value="45-64">45-64</option>
+            <option value="65+">65 and Older</option>
+        </select>
+
+        <label for="perpSexFilter">&nbsp;Perp Sex:&nbsp;</label>
+        <select id="perpSexFilter">
+            <option value="all">All Sexes</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="U">Unknown</option>
+        </select>
+        <br>
+        <label for="vicRaceFilter">Victim Race:&nbsp;</label>
+        <select id="vicRaceFilter">
+            <option value="all">All Races</option>
+            <option value="AMERICAN INDIAN/ALASKAN NATIVE">Native American/Alaskan</option>
+            <option value="ASIAN / PACIFIC ISLANDER">Asian/Pacific Islander</option>
+            <option value="BLACK">Black</option>
+            <option value="BLACK HISPANIC">Black Hispanic</option>
+            <option value="WHITE">White</option>
+            <option value="WHITE HISPANIC">White Hispanic</option>
+            <option value="UNKNOWN">Unknown</option>
+        </select>
+
+        <label for="vicAgeGroupFilter">Victim Age Group:&nbsp;</label>
+        <select id="vicAgeGroupFilter">
+            <option value="all">All Age Groups</option>
+            <option value="&lt;18">Under 18</option>
+            <option value="18-24">18-24</option>
+            <option value="25-44">25-44</option>
+            <option value="45-64">45-64</option>
+            <option value="65+">65 and Older</option>
+        </select>
+
+        <label for="vicSexFilter">&nbsp;Victim Sex:</label>
+        <select id="vicSexFilter">
+            <option value="all">All Sexes &nbsp;</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="U">Unknown</option>
+        </select>&nbsp;
+
+        <!-- *************************************************************** -->
+        <!-- "Apply Filters" and "Perecentage" buttons styled with Bootstrap -->
+        <!-- *************************************************************** -->
+
+        <button type ="button" class="btn btn-primary" onclick="filterMap()"> Apply Filters</button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-info btn-lg btn-block" id="selectionPercentageButton">Your selection is 0% of total incidents</button>
+    </div>
+
+    <div class="container">
+        <h2 class="my-4">Choropleth Map</h2>
         <!-- Choropleth Map -->
         <p>The below map shows the total number of shooting incidents by borough in New York City. Each borough is colored based on the number of incidents.</p>
         <div id="choroplethMap" style="height: 600px"></div>
@@ -91,7 +168,8 @@
     <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v6.min.js"></script>
 
-    <!-- Our JavaScript file -->
-    <script type="text/javascript" src="js/map.js"></script>
+    <!-- Our JavaScript files -->
+    <script type="text/javascript" src="js/clusterMap.js"></script>
+    <script type="text/javascript" src="js/choroMap.js"></script>
 </body>
 </html>
