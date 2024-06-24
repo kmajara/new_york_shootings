@@ -18,15 +18,18 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="datasource.html">Data Source </a> <!-- UPDATE THE PAGE LINK -->
-            <li class="nav-item">
-                <a class="nav-link" href="dataAnalysis.html">Data Analysis</a> 
+                <a class="nav-link" href="about.html">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="highchart.html">Interactive Graphs</a> <!-- UPDATE THE PAGE LINK -->
+                <a class="nav-link" href="datasource.html">Data Processing </a> 
+            <li class="nav-item">
+                <a class="nav-link" href="dataAnalysis.html">Data Analysis</a> <!-- UPDATE THE PAGE LINK -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="highchart.html">Graphs</a> <!-- UPDATE THE PAGE LINK -->
             <li class="nav-item">
                 <a class="nav-link" href="map.html">Interactive Maps</a>
             </li>
@@ -38,36 +41,19 @@
 
     <div class="container">
             <div class="map">
-                <h2>MAPS WITH PYPLEX PYTHON LIBRARY</h2>
+                <h2>Maps - Pyplex Python Library</h2>
                 <iframe id="map" src="ny_incidents_map.html" width="1200" height="800" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            <div>      
+            
+                <br> <p> This map shows the location of the various shooting incidents in new york city. The map coloring depicts high density for Brooklyn and Bronx, with Staten Island, Queens, and Manhattan showing les incidents.   </p>
+             <div>      
      <br> 
         </div>      
             <div class="map"></div>
             <iframe id="map" src="ny_shootings_landmarks_map.html" width="1200" height="800" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            <p>&bull; Both Maps are scatterplots showing the location of shootings in the Borough of New York. The second map shows the varying locations of the shootings and its proximity to educational facilities. </p>
-            <p>&bull; BORO: Borough where the shooting incident occurred.</p>
-            <p>&bull; INCIDENT KEY: Randomly generated persistent ID for each arrest.</p>
-            <p>&bull; LONG: Latitude coordinate for Global Coordinate System, WGS 1984, decimal degrees (EPSG 4326).</p>
-            <p>&bull; LAT: Longitude coordinate for Global Coordinate System, WGS 1984, decimal degrees (EPSG 4326)</p>
-            <p>&bull; OCCUR DATE: Exact date of the shooting incident.</p>
-            <p>&bull; OCCUR TIME: Exact time of the shooting incident.</p>
-            <p>&bull; PRECINT: Precinct where the shooting incident occurred.</p>
-            <p>&bull; PERP_AGE_GROUP: Perpetrator’s age within a category.</p>
-            <p>&bull; PERP_SEX: Perpetrator’s sex description.</p>
-            <p>&bull; PERP_RACE: Perpetrator’s race description</p>
-            <p>&bull; VIC_AGE_GROUP: Victim’s age within a category.</p>
-            <p>&bull; VIC_SEX: Victim’s sex description.</p>
-            <p>&bull; VIC_RACE: Victim’s race description.</p>
-            <p>&bull; STATISTICAL_MURDER_FLAG: Shooting resulted in the victim’s death which would be counted as a murder.</p>
-            <p>&bull; X_COORD_CD: Midblock X-coordinate for New York State Plane Coordinate System, Long Island Zone, NAD 83, units feet (FIPS 3104).</p>
-            <p>&bull; Y_COORD_CD: Midblock Y-coordinate for New York State Plane Coordinate System, Long Island Zone, NAD 83, units feet (FIPS 3104).</p>
-            <p>&bull; EPSG 4326: EPSG Geodetic Parameter Dataset (also EPSG registry) is a public registry of geodetic datums, spatial reference systems, Earth ellipsoids, coordinate transformations and related units of measurement, originated by a member of the European Petroleum Survey Group (EPSG) in 1985.</p>
-
+            <br><p>This map is similar to the one above in that it shows the location of shootings in the Borough of New York. Additionally, this map shows the locations of the shootings and their proximity to educational facilities, where proximity is given in meters. </p>
+          
 
         </div> 
-
-
 
         <div class="images">
             <h2>CHARTS</h2>
@@ -87,14 +73,14 @@
 
             <div class="image-container">
                 <img id="picture2" src="images/monthlyShootingIncidents.png" alt="Image 2">
-                <p>&bull; From this chart, we can see that in the year 2018, the highest shootings occured in November and December that year.</p>
+                <p>From this chart, we can see that in the year 2018, the highest shootings occured in November and December that year.</p>
             </div>
 
             <br>
 
             <div class="image-container">
                 <img id="picture2" src="images/yearlyShootingIncidents.png" alt="Image 2">
-                <p>&bull; This image depicts a line graph of yearly shooting incidents, showing that from 2006 and 2022, New York experienced a huge decline in shooting numbers between 2017 and 2019.</p>
+                <p> This image depicts a line graph of yearly shooting incidents, showing that from 2006 and 2022, New York experienced a huge decline in shooting numbers between 2017 and 2019.</p>
             </div>
        
 
