@@ -79,10 +79,10 @@ To set up this project locally, follow these steps:
     ```
 3. Open the `index.html` file in your preferred web browser to view the project.
 
-4. You might have to open a a local server for the maps in map.html to show. The following are the steps to achieve that: 
-	a). Navigate to the folder containing the map.html and run: python3 -m http.server 8000 
-	b). Open a this link in a new browser windwo: http://localhost:8000/
-	c). The maps and related functionality should work then 
+4. You might have to open a a local server for the maps in map.html to show. The following are the steps to achieve that.
+	- Navigate to the folder containing the map.html and run: python3 -m http.server 8000
+	- Open a this link in a new browser windwo: http://localhost:8000/
+	- The maps and related functionality should work then 
 
 ## Usage
 
