@@ -11,11 +11,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Paths to the local JSON files
 let shootingDataPath = 'Resources/NYC Shooting Incidents - JSON.json';
-let geojsonPath = 'Resources/nyc_boros_clean.geojson';
+
 
 // Load the data with d3
 d3.json(shootingDataPath).then(function(data) {
-    // Total number of incidents
+    // Total number of incidents, to be used later for percentange calculations
     const totalIncidents = data.features.length;
 
     // Create a new marker cluster group
@@ -34,7 +34,7 @@ d3.json(shootingDataPath).then(function(data) {
             let vicAgeGroupFilter = document.getElementById('vicAgeGroupFilter').value;
             let vicSexFilter = document.getElementById('vicSexFilter').value;
 
-            // Filter conditions
+            // Filter conditions: sets filtercondition to equal both conditions (true filter Condition and filtered items.)
             let filterCondition = true;
             if (boroFilter !== 'all') {
                 filterCondition = filterCondition && feature.properties.BORO === boroFilter;
@@ -77,7 +77,7 @@ d3.json(shootingDataPath).then(function(data) {
         // Get filtered data
         let filteredData = filterData();
 
-        // Loop through the filtered data and add markers
+        // Loop through the filtered data and add markers. Does not use the indivividual coordinates, but rather the geometry to access the coordinates. 
         filteredData.forEach(function(feature) {
             let location = feature.geometry.coordinates;
             if (location) {
