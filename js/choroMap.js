@@ -1,7 +1,7 @@
 
 // Paths to the local JSON files
-let shootingDataPath1 = 'Resources/NYC Shooting Incidents - JSON.json';
-let geojsonPath1 = 'Resources/nyc_boros_clean.geojson';
+let shootingDataPath1 = '../Resources/NYC Shooting Incidents - JSON.json';
+let geojsonPath1 = '../Resources/nyc_boros_clean.geojson';
 
 // Load the data with d3
 d3.json(shootingDataPath1).then(function(data) {

@@ -5,19 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const picture4 = document.getElementById('picture4');
 
     picture1.addEventListener('click', function() {
-        picture1.src = 'path/to/your/another-image1.jpg';
-    });
+        picture1.src = '../images/chart2d_incidents.png'; // Updates were made, still needs fixing?
 
     picture2.addEventListener('click', function() {
-        picture2.src = 'path/to/your/another-image2.jpg';
+        picture2.src = '../images/chart2d_incidents.png'; // Updates were made, still needs fixing?
     });
 
     picture3.addEventListener('click', function() {
-        picture3.src = 'path/to/your/another-image2.jpg';
+        picture3.src = 'path/to/your/another-image2.jpg'; //No updates were made here s
     });
 
     picture4.addEventListener('click', function() {
-        picture4.src = 'path/to/your/another-image2.jpg';
+        picture4.src = 'path/to/your/another-image2.jpg'; // No updates were made here
     });
 
 
