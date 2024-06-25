@@ -10,12 +10,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(myMap);
 
 // Paths to the local JSON files
-let shootingDataPath = 'Resources/NYC Shooting Incidents - JSON.json';
-
+let shootingDataPath = '../Resources/NYC Shooting Incidents - JSON.json';
 
 // Load the data with d3
 d3.json(shootingDataPath).then(function(data) {
-    // Total number of incidents, to be used later for percentange calculations
+    // Total number of incidents, to be used later for percentage calculations
     const totalIncidents = data.features.length;
 
     // Create a new marker cluster group
@@ -23,48 +22,50 @@ d3.json(shootingDataPath).then(function(data) {
 
     // Function to filter data based on user input
     function filterData() {
+
         let filteredData = data.features.filter(function(feature) {
             let boroFilter = document.getElementById('boroughFilter').value;
-            let startDateFilter = document.getElementById('startDateFilter').value;
-            let endDateFilter = document.getElementById('endDateFilter').value;
-            let perpRaceFilter = document.getElementById('perpRaceFilter').value;
-            let perpAgeGroupFilter = document.getElementById('perpAgeGroupFilter').value;
-            let perpSexFilter = document.getElementById('perpSexFilter').value;
-            let vicRaceFilter = document.getElementById('vicRaceFilter').value;
-            let vicAgeGroupFilter = document.getElementById('vicAgeGroupFilter').value;
-            let vicSexFilter = document.getElementById('vicSexFilter').value;
+                let startDateFilter = document.getElementById('startDateFilter').value;
+                let endDateFilter = document.getElementById('endDateFilter').value;
+                let perpRaceFilter = document.getElementById('perpRaceFilter').value;
+                let perpAgeGroupFilter = document.getElementById('perpAgeGroupFilter').value;
+                let perpSexFilter = document.getElementById('perpSexFilter').value;
+                let vicRaceFilter = document.getElementById('vicRaceFilter').value;
+                let vicAgeGroupFilter = document.getElementById('vicAgeGroupFilter').value;
+                let vicSexFilter = document.getElementById('vicSexFilter').value;
 
-            // Filter conditions: sets filtercondition to equal both conditions (true filter Condition and filtered items.)
-            let filterCondition = true;
-            if (boroFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.BORO === boroFilter;
-            }
-            if (startDateFilter) {
-                filterCondition = filterCondition && new Date(feature.properties.OCCUR_DATE) >= new Date(startDateFilter);
-            }
-            if (endDateFilter) {
-                filterCondition = filterCondition && new Date(feature.properties.OCCUR_DATE) <= new Date(endDateFilter);
-            }
-            if (perpRaceFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.PERP_RACE === perpRaceFilter;
-            }
-            if (perpAgeGroupFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.PERP_AGE_GROUP === perpAgeGroupFilter;
-            }
-            if (perpSexFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.PERP_SEX === perpSexFilter;
-            }
-            if (vicRaceFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.VIC_RACE === vicRaceFilter;
-            }
-            if (vicAgeGroupFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.VIC_AGE_GROUP === vicAgeGroupFilter;
-            }
-            if (vicSexFilter !== 'all') {
-                filterCondition = filterCondition && feature.properties.VIC_SEX === vicSexFilter;
-            }
-
-            return filterCondition;
+                // Filter data based on user input
+                // Filter conditions: sets filtercondition to equal both conditions (true filter Condition and filtered items.)
+        
+                let filterCondition = true;
+                if (boroFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.BORO === boroFilter;
+                }
+                if (startDateFilter) {
+                    filterCondition = filterCondition && new Date(feature.properties.OCCUR_DATE) >= new Date(startDateFilter);
+                }
+                if (endDateFilter) {
+                    filterCondition = filterCondition && new Date(feature.properties.OCCUR_DATE) <= new Date(endDateFilter);
+                }
+                if (perpRaceFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.PERP_RACE === perpRaceFilter;
+                }
+                if (perpAgeGroupFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.PERP_AGE_GROUP === perpAgeGroupFilter;
+                }
+                if (perpSexFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.PERP_SEX === perpSexFilter;
+                }
+                if (vicRaceFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.VIC_RACE === vicRaceFilter;
+                }
+                if (vicAgeGroupFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.VIC_AGE_GROUP === vicAgeGroupFilter;
+                }
+                if (vicSexFilter !== 'all') {
+                    filterCondition = filterCondition && feature.properties.VIC_SEX === vicSexFilter;
+                }
+                return filterCondition;
         });
 
         return filteredData;
@@ -77,7 +78,7 @@ d3.json(shootingDataPath).then(function(data) {
         // Get filtered data
         let filteredData = filterData();
 
-        // Loop through the filtered data and add markers. Does not use the indivividual coordinates, but rather the geometry to access the coordinates. 
+        // Loop through the filtered data and add markers
         filteredData.forEach(function(feature) {
             let location = feature.geometry.coordinates;
             if (location) {
@@ -118,4 +119,5 @@ d3.json(shootingDataPath).then(function(data) {
         markers.clearLayers();
         updateMarkers();
     };
-});
+
+})
